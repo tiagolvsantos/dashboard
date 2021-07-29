@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>tanos-trader</title>
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet">
+      <!--PRD -->
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+      <!--DEV -->
+      <!--  <script src="\\ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+         <script src="\\netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" type="text/css" href="\\netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
+      <style type="text/css">
+         .li {
+         margin-bottom: 10px;
+         }
+         .media li {
+         display: inline;
+         list-style-type: none;
+         padding-right: 20px;
+         }
+         body {
+         background-color: #101010;
+         }
+      </style>
+      <script>
+         function yahooSearch(e) {
+             if (e.keyCode === 13) {
+                 e.preventDefault(); // Ensure it is only this code that rusn
+                 var ticker = document.getElementById('txtSearchYahoo').value;
+         
+                 if (ticker != null)
+                     window.open("https://finance.yahoo.com/quote/" + ticker, "_blank");
+             }
+         }
+      </script>
+      <script src="https://authedmine.com/lib/simple-ui.min.js" async></script>
+   </head>
+   <body>
+      <div class="container-fluid">
+         <!--Menu-->
+         <div class="row">
+            <div class="col-md-12">
+                 <div class="col-md-12">
+               <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+                  <div class="navbar-header">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                     <span class="sr-only"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     </button>
+                     <a class="navbar-brand" href="index.html">tanos-trader</a>
+                  </div>
+                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                     <ul class="nav navbar-nav">
+                        <!--Menu-->
+                        <li>
+                           <a target="_blank" href="https://seekingalpha.com/account/portfolio">SeekingAlpha</a>
+                        </li>
+                        <li>
+                           <a target="_blank" href="https://stocktwits.com/">ST</a>
+                        </li>
+                        <li>
+                           <a target="_blank" href="https://finance.yahoo.com/portfolio/p_0/view/v1?bypass=true">Portfolio</a>
+                        </li>
+                        <li>
+                           <a target="_blank" href="http://markets.wsj.com/">Markets.wsj</a>
+                        </li>
+                        <li>
+                           <a target="_blank" href="https://markets.ft.com/data/">FT</a>
+                        </li>
+                        <!--Menu Research-->
+                        <li class="dropdown ">
+                           <a href="#" data-toggle="dropdown" class="dropdown-toggle">Research
+                           <strong class="caret"></strong>
+                           </a>
+                           <ul class="dropdown-menu">
+                              <li>
+                                 <a target="_blank" href="https://fintel.io/">Fintel.io</a>
+                              </li>
+                              <li>
+                                 <a target="_blank" href="https://simplywall.st">SimplyWall.st</a>
+                              </li>
+                              <li>
+                                 <a target="_blank" href="https://stockflare.com/">Stockflare</a>
+                              </li>
+                              <li>
+                                 <a target="_blank" href="https://stockinvest.us/">StockInvest.us</a>
+                              </li>
+                              <li>
+                                 <a target="_blank" href="https://finbox.io/watchlist">Finbox.io</a>
+                              </li>
+                              <li>
+                                 <a target="_blank" href="https://www.estimize.com/users/tiagolvsantos">Estimize</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li>
+                                 <a target="_blank" href="http://www.etf.com/">etf.com</a>
+                              </li>
+                              <li>
+                                 <a target="_blank" href="http://etfdb.com/">etfdb.com</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li>
+                                 <a target="_blank" href="http://rdinvesting.com/reports/">RDInvesting</a>
+                              </li>
+                              <li>
+                                 <a target="_blank" href="http://www.dataroma.com/m/home.php">DATAROMA</a>
+                              </li>
+                              <li>
+                                 <a target="_blank" href="https://www.last10k.com/">Last10k</a>
+                              </li>
+                           </ul>
+                        </li>
+                        <!--Menu Brokers-->
+                        <li class="dropdown ">
+                           <a href="#" data-toggle="dropdown" class="dropdown-toggle">Brokers
+                           <strong class="caret"></strong>
+                           </a>
+                           <ul class="dropdown-menu">
+                              <li>
+                                 <a target="_blank " href="https://www.degiro.pt/ ">DeGiro</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li>
+                                 <a target="_blank " href="https://www.etoro.com/ ">eToro</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li>
+                                 <a target="_blank " href="https://www.bondora.com/login ">Bondora</a>
+                              </li>
+                              <li>
+                                 <a target="_blank " href="https://www.raize.pt/investor/dashboard ">Raize</a>
+                              </li>
+                           </ul>
+                        </li>
+                        <!--Menu Crypto-->
+                        <li class="dropdown ">
+                           <a href="#" data-toggle="dropdown" class="dropdown-toggle">Cryptocurrency
+                           <strong class="caret"></strong>
+                           </a>
+                           <ul class="dropdown-menu">
+                              <li>
+                                 <a target="_blank " href="https://hashflare.io/panel">Hasflare.io</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li>
+                                 <a target="_blank " href="https://www.coinbase.com/dashboard">Coinbase</a>
+                              </li>
+                              <li>
+                                 <a target="_blank " href="https://poloniex.com/exchange">Poloniex</a>
+                              </li>
+                              <li>
+                                 <a target="_blank " href="https://bittrex.com/">Bittrex</a>
+                              </li>
+                              <li>
+                                 <a target="_blank " href="https://etherdelta.github.io">EtherDelta</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li>
+                                 <a target="_blank " href="https://shapeshift.io/#/coins">Shapeshift</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li>
+                                 <a target="_blank " href="https://cryptopanic.com">Crypto Panic</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li>
+                                 <a target="_blank " href="https://coinmarketcap.com/">CoinMarketCap</a>
+                              </li>
+                              <li>
+                                 <a target="_blank " href="https://www.cryptocompare.com/mining/calculator">Hash Calculator</a>
+                              </li>
+                           </ul>
+                        </li>
+                        <!--Menu Tools-->
+                        <li class="dropdown ">
+                           <a href="#" data-toggle="dropdown" class="dropdown-toggle">Tools
+                           <strong class="caret"></strong>
+                           </a>
+                           <ul class="dropdown-menu">
+                              <li>
+                                 <a target="_blank " href="https://www.investing.com/members-admin/alert-center/ ">Alerts</a>
+                              </li>
+                              <li>
+                                 <a target="_blank " href="https://calendar.google.com/calendar/render#main_7%7Cmonth">Calendar</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li>
+                                 <a target="_blank " href="http://www.thecalculatorsite.com/finance/calculators/compoundinterestcalculator.php ">Compound Calculator</a>
+                              </li>
+                              <li>
+                                 <a target="_blank " href="https://onedrive.live.com/?id=7601A4032F31C87E%216662&cid=7601A4032F31C87E ">OneDrive</a>
+                              </li>
+                              <li>
+                                 <a target="_blank " href="https://keep.google.com/u/0/#label/Finance">Keep</a>
+                              </li>
+                           </ul>
+                        </li>
+                     </ul>
+                     <!--Yahoo Finance Search Box-->
+                            <ul class="nav navbar-nav navbar-right">
+                        <li>
+                           <a target="_blank " href="https://www.chartmill.com/stockcharts.php?o=52405">
+                           <img src="http://i.vimeocdn.com/video/393787302_1280x720.jpg" class="img-circle" height="28" width="28" title="Tiingo" />
+                           </a>
+                        </li>
+                         <li>
+                           <a target="_blank " href="https://koyfin.com/home">
+                           <img src="https://slack-files2.s3-us-west-2.amazonaws.com/avatars/2016-06-30/55693275699_9dafdd6e92b4dc6897ae_512.png" class="img-circle" height="28" width="28" title="Koyfin" />
+                           </a>
+                        </li>
+                          <li>
+                           <a target="_blank " href="https://finviz.com/map.ashx">
+                           <img src="http://howardlindzon.com/wp-content/uploads/2012/04/StockTwits-Socail-Heatmap-Basic-Materials.png" class="img-circle" height="28" width="28" title="Market Heatmap" />
+                           </a>
+                        </li>
+                        <li>
+                           <a target="" href="Crypto.html"><img src="https://bitcoin.org/img/icons/opengraph.png" class="img-circle" height="28" width="28" title="Crypto" /></a>
+                        </li>
+                        <li>
+                           <input style="height:52px" type="text" align="center" class="form-control" size="6" placeholder="$ticker" id="txtSearchYahoo" onkeypress="yahooSearch(event)" />
+                        </li>
+                     </ul>
+                  </div>
+               </nav>
+               <div class="page-header ">
+               </div>
+            </div>
+         </div>
+         <!-- Ticker & Clock-->
+         <div class="row">
+            <!--NY Clock-->
+            <div class="col-md-1 " align="right">
+               <!--https://www.timeanddate.com/clocks/free.html -->
+               <div align="right ">
+                  <iframe src="https://freesecure.timeanddate.com/clock/i5pdxi7f/n179/tct/pct/ftb " frameborder="0 " width="100 " height="18 " allowTransparency="true "></iframe>
+               </div>
+            </div>
+         </div>
+         <!-- Crypto Miner-->
+         <div class="coinhive-miner" 
+            style="width: 160px; height: 600px"
+            data-key="JBoFsbiVrLjLwmB5E7IPBGcC5nz6pUvZ" 
+            data-background="#101010" 
+            data-text="#FFFFFF" 
+            data-graph="#FFFFFF"
+            data-action="FFFFFF"
+            data-whitelabel="true"
+            data-user="tanosTrader">
+            <em>Loading...</em>
+         </div>
+         <!--Quote row-->
+         <div class="row">
+            <div class="col-md-12">
+               <div class="row">
+                  <div class="col-md-6">
+                  </div>
+                  <div class="col-md-6">
+                     <blockquote class="pull-left">
+                        <p>
+                           "Know what you own, and know why you own it."
+                        </p>
+                        <small>Peter Lynch<cite>One Up On Wall Street: How To Use What You Already Know To Make Money In The Market</cite></small>
+                     </blockquote>
+                     <grammarly class="pull-right">
+                        <div class="_e725ae-textarea_btn _e725ae-not_focused">
+                           <div class="_e725ae-transform_wrap">
+                              <div class="_e725ae-status">
+                              </div>
+                           </div>
+                        </div>
+                     </grammarly>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="js/jquery.min.js "></script>
+      <script src="js/bootstrap.min.js "></script>
+      <script src="js/scripts.js "></script>
+   </body>
+</html>
