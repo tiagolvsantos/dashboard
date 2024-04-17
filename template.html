@@ -6,14 +6,14 @@
 </head>
 <body>
 
+<div id="menu"></div>
 
-<div class="dropdown">
-    <button>Menu</button>
-    <div class="dropdown-content">
-        <a href="index.html">Hone</a>
-        <a href="lots_of_charts.html">Charts</a>
-    </div>
-</div>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+  $(function(){
+    $("#menu").load("menu.html"); 
+  });
+</script>
 
 <table style="width:100%; height:100%;">
     <tr>
