@@ -47,3 +47,11 @@ body {
     background-color:#FF8C00;
     color: black;
 }
+.clock-container {
+    display: flex;
+    justify-content: space-around;
+}
+.clock {
+    margin: 20px;
+    font-size: 20px;
+}
