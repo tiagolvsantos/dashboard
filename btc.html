@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Dashboard</title>
+</head>
+<body>
+
+<div id="menu"></div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+  $(function(){
+    $("#menu").load("menu.html"); 
+  });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
+<script src="clocks.js"></script>
+
+<iframe src="https://aggr.trade/group-cvdcopy-1" style="width:100%; height:600px;"></iframe>
+<table style="width: 100%;">
+  <tr>
+    <td style="width: 50%;">
+      <iframe width="100%" height="420" frameborder="0" src="https://www.theblock.co/data/crypto-markets/futures/long-liquidations/embed" title="Long Liquidations"></iframe>
+    </td>
+    <td style="width: 50%;">
+      <iframe width="100%" height="420" frameborder="0" src="https://www.theblock.co/data/crypto-markets/futures/short-liquidations/embed" title="Short Liquidations"></iframe>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 50%;">
+      <iframe width="100%" height="420" frameborder="0" src="https://www.theblock.co/data/crypto-markets/futures/aggregated-open-interest-of-bitcoin-futures-daily/embed" title="Aggregated Open Interest of Bitcoin Futures"></iframe>
+    </td>
+    <td style="width: 50%;">
+      <iframe width="100%" height="420" frameborder="0" src="https://www.theblock.co/data/crypto-markets/futures/btc-funding-rates/embed" title="BTC Funding Rates (7DMA, APY)"></iframe>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <iframe width="100%" height="420" frameborder="0" src="https://www.theblock.co/data/crypto-markets/futures/coinbase-international-daily-volume/embed" title="Coinbase International Daily Volume"></iframe>
+    </td>
+    <td>
+      <iframe width="100%" height="420" frameborder="0" src="https://www.theblock.co/data/crypto-markets/cme-cots/net-positions-of-cme-bitcoin-futures-by-trader-category-weekly/embed" title="Net Positions of CME Bitcoin Futures by Trader Category"></iframe>
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+</body>
+</html>
