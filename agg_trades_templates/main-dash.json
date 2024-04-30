@@ -1,7 +1,7 @@
 {
   "version": 7,
   "createdAt": 1714481939458,
-  "updatedAt": 1714483993975,
+  "updatedAt": 1714495304211,
   "name": "main_dash copy 1",
   "id": "main-dash-copy-1",
   "states": {
@@ -2009,9 +2009,9 @@
         "indicator-left-other",
         "alerts-BTCUSD",
         "alerts-ETHUSD",
-        "alerts-SOLUSD",
         "watchlist-settings-columns",
-        "watchlist-settings-extra"
+        "watchlist-settings-extra",
+        "alerts-SOLUSD"
       ],
       "searchTypes": {
         "recentSearches": true,
@@ -2489,7 +2489,7 @@
         "minutes",
         "hours"
       ],
-      "indicatorDialogNavigation": "{\"optionsQuery\":\"\",\"editorOptions\":{},\"columnWidth\":240,\"tab\":\"script\"}"
+      "indicatorDialogNavigation": "{\"optionsQuery\":\"\",\"editorOptions\":{},\"columnWidth\":240,\"tab\":\"options\"}"
     },
     "chart copy 3": {
       "indicatorsErrors": {},
@@ -2508,12 +2508,12 @@
             "priceLineVisible": false,
             "lastValueVisible": true,
             "borderVisible": true,
-            "upColor": "rgba(41,98,255,0.33)",
-            "downColor": "rgba(255,152,0,0.72)",
-            "borderUpColor": "rgba(41,98,255,0.88)",
-            "borderDownColor": "rgba(255,152,0,0.88)",
-            "wickUpColor": "rgba(41,98,255,0.59)",
-            "wickDownColor": "rgb(255,152,0)",
+            "upColor": "rgba(255,255,255,0.33)",
+            "downColor": "rgba(41,98,255,0.72)",
+            "borderUpColor": "rgba(255,255,255,0.88)",
+            "borderDownColor": "rgba(41,98,255,0.8)",
+            "wickUpColor": "rgba(255,255,255,0.59)",
+            "wickDownColor": "rgba(41,98,255,0.88)",
             "useGaps": false,
             "useHeikinAshi": false,
             "scaleMargins": {
@@ -2542,7 +2542,7 @@
           },
           "preview": {},
           "optionsDefinitions": {},
-          "lastPreset": "main",
+          "lastPreset": "blue",
           "libraryId": "price"
         },
         "_bq966qsg2zzktm0c": {
@@ -2682,7 +2682,7 @@
       "showRightScale": true,
       "showTimeScale": true,
       "hiddenMarkets": {},
-      "barSpacing": 7.219138980353338,
+      "barSpacing": 7.219544499128928,
       "_id": "chart copy 3",
       "navigationState": {
         "tab": "script",
@@ -2707,12 +2707,12 @@
             "priceLineVisible": false,
             "lastValueVisible": true,
             "borderVisible": true,
-            "upColor": "rgba(41,98,255,0.33)",
-            "downColor": "rgba(255,152,0,0.72)",
-            "borderUpColor": "rgba(41,98,255,0.88)",
-            "borderDownColor": "rgba(255,152,0,0.88)",
-            "wickUpColor": "rgba(41,98,255,0.59)",
-            "wickDownColor": "rgb(255,152,0)",
+            "upColor": "rgba(255,255,255,0.33)",
+            "downColor": "rgba(41,98,255,0.72)",
+            "borderUpColor": "rgba(255,255,255,0.88)",
+            "borderDownColor": "rgba(41,98,255,0.8)",
+            "wickUpColor": "rgba(255,255,255,0.59)",
+            "wickDownColor": "rgba(41,98,255,0.88)",
             "useGaps": false,
             "useHeikinAshi": false,
             "scaleMargins": {
@@ -2741,7 +2741,7 @@
           },
           "preview": {},
           "optionsDefinitions": {},
-          "lastPreset": "main",
+          "lastPreset": "blue",
           "libraryId": "price"
         },
         "_64yf30cyjyuwgq88": {
@@ -3438,7 +3438,7 @@
         "OKEX:BTC-USDC": false,
         "OKEX:BTC-USDT": false
       },
-      "barSpacing": 6.497861874066982,
+      "barSpacing": 6.497593991292827,
       "_id": "chart copy 6",
       "navigationState": {
         "tab": "script",
@@ -3466,12 +3466,12 @@
             "priceLineVisible": false,
             "lastValueVisible": true,
             "borderVisible": true,
-            "upColor": "rgba(41,98,255,0.33)",
-            "downColor": "rgba(255,152,0,0.72)",
-            "borderUpColor": "rgba(41,98,255,0.88)",
-            "borderDownColor": "rgba(255,152,0,0.88)",
-            "wickUpColor": "rgba(41,98,255,0.59)",
-            "wickDownColor": "rgb(255,152,0)",
+            "upColor": "rgba(255,255,255,0.33)",
+            "downColor": "rgba(41,98,255,0.72)",
+            "borderUpColor": "rgba(255,255,255,0.88)",
+            "borderDownColor": "rgba(41,98,255,0.8)",
+            "wickUpColor": "rgba(255,255,255,0.59)",
+            "wickDownColor": "rgba(41,98,255,0.88)",
             "useGaps": false,
             "useHeikinAshi": false,
             "scaleMargins": {
@@ -3500,7 +3500,23 @@
             "scaleMargins": {
               "top": 0.04,
               "bottom": 0.52
-            }
+            },
+            "leverages": "5|20|100",
+            "threshold": 0,
+            "fadeOut": 0,
+            "stepScale": 0.5,
+            "stepValue": "",
+            "strength": 0.25,
+            "quote": 0,
+            "exchange": 0,
+            "type": "perp",
+            "src": "high/low",
+            "volLength": 20,
+            "atrLength": 20,
+            "useHK": true,
+            "useLog": true,
+            "strokeWidth": 0,
+            "color3": "rgb(251,192,45)"
           },
           "optionsDefinitions": {
             "leverages": {
@@ -3632,29 +3648,30 @@
           },
           "series": [
             "liquidation-heatmap",
-            "5n9emtov",
-            "77umdqsr",
-            "kl09dtcs",
-            "5d14ks9d",
-            "ikw73ngh",
-            "1jhrnw4u",
-            "h1talbgi",
-            "lkwb33gf",
-            "s07x9l6a",
-            "uuy28nmm",
-            "hj8fb33n",
-            "h33ibwis",
-            "tglncmx6",
-            "ixlzpcse",
-            "sib86fhf",
-            "88d21zie"
+            "ycdp35hh",
+            "hn0dk4u7",
+            "8xk8wjb2",
+            "7g5vzmua",
+            "cwyb8gfm",
+            "buxe3850",
+            "qm4cjv07",
+            "hk2bb5r0",
+            "o0aneuv4",
+            "867mcspd",
+            "r9xycwkh",
+            "08huuqfb",
+            "nz30obgy",
+            "0q049dba",
+            "j908az20",
+            "amly8va4"
           ],
-          "displayName": "Liquidation Heatmap"
+          "displayName": "Liquidation Heatmap",
+          "unsavedChanges": true
         }
       },
       "indicatorOrder": [
-        "_7wdaz6pi7ln05htf",
-        "_sx7x9qvn20y0tx8g"
+        "_sx7x9qvn20y0tx8g",
+        "_7wdaz6pi7ln05htf"
       ],
       "priceScales": {
         "right": {
@@ -3729,7 +3746,7 @@
         }
       },
       "layouting": false,
-      "showIndicators": false,
+      "showIndicators": true,
       "timeframe": "14400",
       "refreshRate": 1000,
       "showAlerts": true,
@@ -3749,7 +3766,7 @@
       "showRightScale": true,
       "showTimeScale": true,
       "hiddenMarkets": {},
-      "barSpacing": 5.976449929488827,
+      "barSpacing": 5.916232121667704,
       "_id": "chart copy 1",
       "navigationState": {
         "tab": "script",
@@ -3778,12 +3795,12 @@
             "priceLineVisible": false,
             "lastValueVisible": true,
             "borderVisible": true,
-            "upColor": "rgba(41,98,255,0.33)",
-            "downColor": "rgba(255,152,0,0.72)",
-            "borderUpColor": "rgba(41,98,255,0.88)",
-            "borderDownColor": "rgba(255,152,0,0.88)",
-            "wickUpColor": "rgba(41,98,255,0.59)",
-            "wickDownColor": "rgb(255,152,0)",
+            "upColor": "rgba(255,255,255,0.33)",
+            "downColor": "rgba(41,98,255,0.72)",
+            "borderUpColor": "rgba(255,255,255,0.88)",
+            "borderDownColor": "rgba(41,98,255,0.8)",
+            "wickUpColor": "rgba(255,255,255,0.59)",
+            "wickDownColor": "rgba(41,98,255,0.88)",
             "useGaps": false,
             "useHeikinAshi": false,
             "scaleMargins": {
@@ -3799,7 +3816,7 @@
           ],
           "displayName": "Price",
           "unsavedChanges": true,
-          "lastPreset": "main"
+          "lastPreset": "blue"
         },
         "_sx7x9qvn20y0tx8g": {
           "id": "_sx7x9qvn20y0tx8g",
@@ -3813,7 +3830,22 @@
             "scaleMargins": {
               "top": 0.22,
               "bottom": 0.34
-            }
+            },
+            "leverages": "5|20|100",
+            "threshold": 0,
+            "fadeOut": 0,
+            "stepScale": 0.5,
+            "stepValue": "",
+            "strength": 0.25,
+            "quote": 0,
+            "exchange": 0,
+            "type": "perp",
+            "src": "high/low",
+            "volLength": 20,
+            "atrLength": 20,
+            "useHK": true,
+            "useLog": true,
+            "strokeWidth": 0
           },
           "optionsDefinitions": {
             "leverages": {
@@ -3962,12 +3994,13 @@
             "ac325ufo",
             "5tzqolhn"
           ],
-          "displayName": "Liquidation Heatmap"
+          "displayName": "Liquidation Heatmap",
+          "unsavedChanges": true
         }
       },
       "indicatorOrder": [
-        "_7wdaz6pi7ln05htf",
-        "_sx7x9qvn20y0tx8g"
+        "_sx7x9qvn20y0tx8g",
+        "_7wdaz6pi7ln05htf"
       ],
       "priceScales": {
         "right": {
@@ -4074,7 +4107,7 @@
         "KRAKEN:SOL/USD": false,
         "OKEX:SOL-USDT": false
       },
-      "barSpacing": 7.465413495159867,
+      "barSpacing": 9.24540300483406,
       "_id": "chart copy 2",
       "navigationState": {
         "tab": "script",
@@ -4103,12 +4136,12 @@
             "priceLineVisible": false,
             "lastValueVisible": true,
             "borderVisible": true,
-            "upColor": "rgba(41,98,255,0.33)",
-            "downColor": "rgba(255,152,0,0.72)",
-            "borderUpColor": "rgba(41,98,255,0.88)",
-            "borderDownColor": "rgba(255,152,0,0.88)",
-            "wickUpColor": "rgba(41,98,255,0.59)",
-            "wickDownColor": "rgb(255,152,0)",
+            "upColor": "rgba(255,255,255,0.33)",
+            "downColor": "rgba(41,98,255,0.72)",
+            "borderUpColor": "rgba(255,255,255,0.88)",
+            "borderDownColor": "rgba(41,98,255,0.8)",
+            "wickUpColor": "rgba(255,255,255,0.59)",
+            "wickDownColor": "rgba(41,98,255,0.88)",
             "useGaps": false,
             "useHeikinAshi": false,
             "scaleMargins": {
@@ -4124,7 +4157,7 @@
           ],
           "displayName": "Price",
           "unsavedChanges": true,
-          "lastPreset": "main"
+          "lastPreset": "blue"
         },
         "_sx7x9qvn20y0tx8g": {
           "id": "_sx7x9qvn20y0tx8g",
@@ -4308,8 +4341,8 @@
         }
       },
       "indicatorOrder": [
-        "_7wdaz6pi7ln05htf",
-        "_sx7x9qvn20y0tx8g"
+        "_sx7x9qvn20y0tx8g",
+        "_7wdaz6pi7ln05htf"
       ],
       "priceScales": {
         "right": {
@@ -4404,7 +4437,7 @@
       "showRightScale": true,
       "showTimeScale": true,
       "hiddenMarkets": {},
-      "barSpacing": 7.784352996257144,
+      "barSpacing": 8.484696644672232,
       "_id": "chart copy 5",
       "navigationState": {
         "tab": "script",
@@ -4430,12 +4463,12 @@
             "priceLineVisible": false,
             "lastValueVisible": true,
             "borderVisible": true,
-            "upColor": "rgba(41,98,255,0.33)",
-            "downColor": "rgba(255,152,0,0.72)",
-            "borderUpColor": "rgba(41,98,255,0.88)",
-            "borderDownColor": "rgba(255,152,0,0.88)",
-            "wickUpColor": "rgba(41,98,255,0.59)",
-            "wickDownColor": "rgb(255,152,0)",
+            "upColor": "rgba(255,255,255,0.33)",
+            "downColor": "rgba(41,98,255,0.72)",
+            "borderUpColor": "rgba(255,255,255,0.88)",
+            "borderDownColor": "rgba(41,98,255,0.8)",
+            "wickUpColor": "rgba(255,255,255,0.59)",
+            "wickDownColor": "rgba(41,98,255,0.88)",
             "useGaps": false,
             "useHeikinAshi": false,
             "scaleMargins": {
@@ -4464,7 +4497,7 @@
           },
           "preview": {},
           "optionsDefinitions": {},
-          "lastPreset": "main",
+          "lastPreset": "blue",
           "libraryId": "price"
         },
         "_64yf30cyjyuwgq88": {
@@ -4584,7 +4617,7 @@
         }
       },
       "layouting": false,
-      "showIndicators": false,
+      "showIndicators": true,
       "timeframe": "86400",
       "refreshRate": 1000,
       "showAlerts": true,
@@ -4604,7 +4637,7 @@
       "showRightScale": true,
       "showTimeScale": true,
       "hiddenMarkets": {},
-      "barSpacing": 6.1048170671937525,
+      "barSpacing": 6.105111687047862,
       "_id": "chart",
       "navigationState": {
         "tab": "options",
@@ -4635,12 +4668,12 @@
             "priceLineVisible": false,
             "lastValueVisible": true,
             "borderVisible": true,
-            "upColor": "rgba(41,98,255,0.33)",
-            "downColor": "rgba(255,152,0,0.72)",
-            "borderUpColor": "rgba(41,98,255,0.88)",
-            "borderDownColor": "rgba(255,152,0,0.88)",
-            "wickUpColor": "rgba(41,98,255,0.59)",
-            "wickDownColor": "rgb(255,152,0)",
+            "upColor": "rgba(255,255,255,0.33)",
+            "downColor": "rgba(41,98,255,0.72)",
+            "borderUpColor": "rgba(255,255,255,0.88)",
+            "borderDownColor": "rgba(41,98,255,0.8)",
+            "wickUpColor": "rgba(255,255,255,0.59)",
+            "wickDownColor": "rgba(41,98,255,0.88)",
             "useGaps": false,
             "useHeikinAshi": false,
             "scaleMargins": {
@@ -4657,7 +4690,8 @@
             "price"
           ],
           "displayName": "Price",
-          "unsavedChanges": true
+          "unsavedChanges": true,
+          "lastPreset": "blue"
         },
         "_9b99ngtdyz9hhbj7": {
           "id": "_9b99ngtdyz9hhbj7",
@@ -4787,7 +4821,7 @@
         }
       },
       "layouting": false,
-      "showIndicators": false,
+      "showIndicators": true,
       "timeframe": "900",
       "refreshRate": 1000,
       "showAlerts": true,
@@ -4807,7 +4841,7 @@
       "showRightScale": true,
       "showTimeScale": true,
       "hiddenMarkets": {},
-      "barSpacing": 5.209716702022448,
+      "barSpacing": 9.208225924791279,
       "_id": "chart copy 7"
     }
   }
