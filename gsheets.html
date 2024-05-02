@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <head>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>GSheets</title>
+</head>
+</head>
+<body>
+
+<div id="menu"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(function(){
+  $("#menu").load("menu.html"); 
+});
+</script>
+
+<div class="clock-container">
+  <div class="clock" id="lisbon"></div>
+  <div class="clock" id="newYork"></div>
+  <div class="clock" id="shanghai"></div>
+  <div class="clock" id="tokyo"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
+<script src="clocks.js"></script>
+
+<!-- Tab links -->
+<div>
+  <button class="tablink" onclick="openTab('Tab1')">Tab 1</button>
+  <button class="tablink" onclick="openTab('Tab2')">Tab 2</button>
+</div>
+
+<!-- Tab content -->
+<div id="Market Overview" class="tab active">
+  <iframe src="https://docs.google.com/spreadsheets/d/1-vvJ51SEAorcljOWPXqJCx5XPoCoDClMske08ZrG0i0/edit?usp=sharing" style="width:100%; height:1300px;"></iframe>
+</div>
+<div id="50DMA" class="tab">
+  <iframe src="https://docs.google.com/spreadsheets/d/1dr-GHEs9d-Q4dzCiM4zeWC0E6Dd1rYX3L9cjIzHC-3U/edit?usp=sharing" style="width:100%; height:1300px;"></iframe>
+</div>
+
+<script>
+function openTab(tabId) {
+  const tabs = document.getElementsByClassName('tab');
+  for (let i = 0; i < tabs.length; i++) {
+    tabs[i].style.display = 'none';
+  }
+  document.getElementById(tabId).style.display = 'block';
+}
+</script>
+
+</body>
+</html>
