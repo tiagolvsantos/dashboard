@@ -1,481 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Charts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="theme.css">
+    <title>Terminal | Indices</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
+    <style>
+        .dashboard-grid {
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            padding: 5px;
+            gap: 5px;
+        }
+        .widget-card {
+            height: calc((100vh - var(--header-height) - 40px) / 3);
+            min-height: 350px;
+        }
+        .content {
+            height: 100vh;
+            overflow: hidden;
+        }
+        .dashboard-grid {
+            height: calc(100vh - var(--header-height));
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
 
-<div id="menu"></div>
+    <aside class="sidebar" id="sidebar-container"></aside>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script>
-  $(function(){
-    $("#menu").load("menu.html"); 
-  });
-</script>
-
-<div class="clock-container">
-  <div class="clock" id="lisbon"></div>
-  <div class="clock" id="newYork"></div>
-  <div class="clock" id="shanghai"></div>
-  <div class="clock" id="tokyo"></div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
-<script src="clocks.js"></script>
-
-<table style="width:100%; height:100%;">
-    <tr>
-    </tr>
-    <tr>
-        <td>
-            <!-- TradingView Widget BEGIN -->
-            <div class="tradingview-widget-container" style="height:100%;width:100%">
-              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-              {
-              "width": "100%",
-              "height": 400,
-              "symbol": "OANDA:SPX500USD",
-              "interval": "D",
-              "timezone": "Etc/UTC",
-              "theme": "dark",
-              "style": "1",
-              "locale": "en",
-              "enable_publishing": false,
-              "gridColor": "rgba(240, 243, 250, 0)",
-              "hide_side_toolbar": false,
-              "allow_symbol_change": true,
-              "withdateranges": true,
-              "range": "YTD",
-              "calendar": false,
-              "studies": [
-                "STD;Bollinger_Bands"
-              ],
-              "support_host": "https://www.tradingview.com"
-            }
-              </script>
+    <main class="content">
+        <header class="top-bar">
+            <div class="clocks-wrapper"></div>
+            <div class="user-meta" style="font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono';">
+                CHARTS // INDICES_V1
             </div>
-            <!-- TradingView Widget END -->
-        </td>
-        <td>
-          <!-- TradingView Widget BEGIN -->
-          <div class="tradingview-widget-container" style="height:100%;width:100%">
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-            {
-            "width": "100%",
-            "height": 400,
-            "symbol": "OANDA:NAS100USD",
-            "interval": "D",
-            "timezone": "Etc/UTC",
-            "theme": "dark",
-            "style": "1",
-            "locale": "en",
-            "enable_publishing": false,
-            "gridColor": "rgba(240, 243, 250, 0)",
-            "hide_side_toolbar": false,
-            "allow_symbol_change": true,
-            "withdateranges": true,
-            "range": "YTD",
-            "calendar": false,
-            "studies": [
-              "STD;Bollinger_Bands"
-            ],
-            "support_host": "https://www.tradingview.com"
-          }
-            </script>
-          </div>
-          <!-- TradingView Widget END -->
-        </td>
-        <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:US2000USD",
-          "interval": "D",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "enable_publishing": false,
-          "gridColor": "rgba(240, 243, 250, 0)",
-          "hide_side_toolbar": false,
-          "allow_symbol_change": true,
-          "calendar": false,
-          "withdateranges": true,
-          "range": "YTD",
-          "studies": [
-            "STD;Bollinger_Bands"
-          ],
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-        </td>
-    </tr>
-    <tr>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:WTICOUSD",
-          "interval": "D",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "enable_publishing": false,
-          "gridColor": "rgba(240, 243, 250, 0)",
-          "hide_side_toolbar": false,
-          "allow_symbol_change": true,
-          "withdateranges": true,
-          "range": "YTD",
-          "calendar": false,
-          "studies": [
-            "STD;Bollinger_Bands"
-          ],
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:XAUUSD",
-          "interval": "D",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "enable_publishing": false,
-          "gridColor": "rgba(240, 243, 250, 0)",
-          "hide_side_toolbar": false,
-          "allow_symbol_change": true,
-          "withdateranges": true,
-          "range": "YTD",
-          "calendar": false,
-          "studies": [
-            "STD;Bollinger_Bands"
-          ],
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-      <!-- TradingView Widget BEGIN -->
-      <div class="tradingview-widget-container" style="height:100%;width:100%">
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-        {
-        "width": "100%",
-        "height": 400,
-        "symbol": "CAPITALCOM:DXY",
-        "interval": "D",
-        "timezone": "Etc/UTC",
-        "theme": "dark",
-        "style": "1",
-        "locale": "en",
-        "enable_publishing": false,
-        "gridColor": "rgba(240, 243, 250, 0)",
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "withdateranges": true,
-        "range": "YTD",
-        "calendar": false,
-        "studies": [
-          "STD;Bollinger_Bands"
-        ],
-        "support_host": "https://www.tradingview.com"
-      }
-        </script>
-      </div>
-      <!-- TradingView Widget END -->
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:EU50EUR",
-          "interval": "D",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "enable_publishing": false,
-          "gridColor": "rgba(240, 243, 250, 0)",
-          "hide_side_toolbar": false,
-          "allow_symbol_change": true,
-          "withdateranges": true,
-          "range": "YTD",
-          "calendar": false,
-          "studies": [
-            "STD;Bollinger_Bands"
-          ],
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:FR40EUR",
-          "interval": "D",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "enable_publishing": false,
-          "gridColor": "rgba(240, 243, 250, 0)",
-          "hide_side_toolbar": false,
-          "allow_symbol_change": true,
-          "withdateranges": true,
-          "range": "YTD",
-          "calendar": false,
-          "studies": [
-            "STD;Bollinger_Bands"
-          ],
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-      <!-- TradingView Widget BEGIN -->
-      <div class="tradingview-widget-container" style="height:100%;width:100%">
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-        {
-        "width": "100%",
-        "height": 400,
-        "symbol": "OANDA:DE30EUR",
-        "interval": "D",
-        "timezone": "Etc/UTC",
-        "theme": "dark",
-        "style": "1",
-        "locale": "en",
-        "enable_publishing": false,
-        "gridColor": "rgba(240, 243, 250, 0)",
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "withdateranges": true,
-        "range": "YTD",
-        "calendar": false,
-        "studies": [
-          "STD;Bollinger_Bands"
-        ],
-        "support_host": "https://www.tradingview.com"
-      }
-        </script>
-      </div>
-      <!-- TradingView Widget END -->
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:NL25EUR",
-          "interval": "D",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "enable_publishing": false,
-          "gridColor": "rgba(240, 243, 250, 0)",
-          "hide_side_toolbar": false,
-          "allow_symbol_change": true,
-          "withdateranges": true,
-          "range": "YTD",
-          "calendar": false,
-          "studies": [
-            "STD;Bollinger_Bands"
-          ],
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:JP225USD",
-          "interval": "D",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "enable_publishing": false,
-          "gridColor": "rgba(240, 243, 250, 0)",
-          "hide_side_toolbar": false,
-          "allow_symbol_change": true,
-          "withdateranges": true,
-          "range": "YTD",
-          "calendar": false,
-          "studies": [
-            "STD;Bollinger_Bands"
-          ],
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-      <!-- TradingView Widget BEGIN -->
-      <div class="tradingview-widget-container" style="height:100%;width:100%">
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-        {
-        "width": "100%",
-        "height": 400,
-        "symbol": "CAPITALCOM:VIX",
-        "interval": "D",
-        "timezone": "Etc/UTC",
-        "theme": "dark",
-        "style": "1",
-        "locale": "en",
-        "enable_publishing": false,
-        "gridColor": "rgba(240, 243, 250, 0)",
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "withdateranges": true,
-        "range": "YTD",
-        "calendar": false,
-        "studies": [
-          "STD;Bollinger_Bands"
-        ],
-        "support_host": "https://www.tradingview.com"
-      }
-        </script>
-      </div>
-      <!-- TradingView Widget END -->
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "NASDAQ:TLT",
-          "interval": "D",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "enable_publishing": false,
-          "gridColor": "rgba(240, 243, 250, 0)",
-          "hide_side_toolbar": false,
-          "allow_symbol_change": true,
-          "withdateranges": true,
-          "range": "YTD",
-          "calendar": false,
-          "studies": [
-            "STD;Bollinger_Bands"
-          ],
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "BINANCE:BTCUSDT",
-          "interval": "D",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "enable_publishing": false,
-          "gridColor": "rgba(240, 243, 250, 0)",
-          "hide_side_toolbar": false,
-          "allow_symbol_change": true,
-          "withdateranges": true,
-          "range": "YTD",
-          "calendar": false,
-          "studies": [
-            "STD;Bollinger_Bands"
-          ],
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-      <!-- TradingView Widget BEGIN -->
-      <div class="tradingview-widget-container" style="height:100%;width:100%">
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-        {
-        "width": "100%",
-        "height": 400,
-        "symbol": "BINANCE:ETHUSDT",
-        "interval": "D",
-        "timezone": "Etc/UTC",
-        "theme": "dark",
-        "style": "1",
-        "locale": "en",
-        "enable_publishing": false,
-        "gridColor": "rgba(240, 243, 250, 0)",
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "withdateranges": true,
-        "range": "YTD",
-        "calendar": false,
-        "studies": [
-          "STD;Bollinger_Bands"
-        ],
-        "support_host": "https://www.tradingview.com"
-      }
-        </script>
-      </div>
-      <!-- TradingView Widget END -->
-      </td>
-    </tr>
-</table>
+        </header>
 
+        <!-- Ticker Tape (Ultra Slim) -->
+        <div style="height: 40px; border-bottom: 1px solid var(--border); background: var(--bg-secondary);">
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+                "symbols": [
+                    {"proName": "FOREXCOM:SPX500", "title": "S&P 500"},
+                    {"proName": "FOREXCOM:NSXUSD", "title": "US 100"},
+                    {"proName": "FX_IDC:EURUSD", "title": "EUR/USD"},
+                    {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
+                    {"proName": "BITSTAMP:ETHUSD", "title": "Ethereum"},
+                    {"proName": "OANDA:XAUUSD", "title": "Gold"}
+                ],
+                "showSymbolLogo": true,
+                "colorTheme": "dark",
+                "isTransparent": true,
+                "displayMode": "adaptive",
+                "locale": "en"
+            }
+            </script>
+        </div>
+
+        <div class="dashboard-grid" id="charts-container">
+            <div class="widget-card"><div id="chart_spx" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_nas" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_rut" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_dxy" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_gold" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_oil" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_btc" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_eth" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_vix" style="height:100%"></div></div>
+        </div>
+    </main>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script>
+        async function loadSidebar() {
+            try {
+                const response = await fetch('sidebar.html');
+                const html = await response.text();
+                document.getElementById('sidebar-container').innerHTML = html;
+                
+                const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+                document.querySelectorAll('.nav-item').forEach(link => {
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active');
+                    }
+                });
+            } catch (err) {
+                console.error('Sidebar load failed:', err);
+                document.getElementById('sidebar-container').innerHTML = '<div style="padding:20px; color:red;">!</div>';
+            }
+        }
+
+        function createChart(container, symbol) {
+            new TradingView.widget({
+                "width": "100%",
+                "height": "100%",
+                "symbol": symbol,
+                "interval": "D",
+                "timezone": "Etc/UTC",
+                "theme": "dark",
+                "style": "1",
+                "locale": "en",
+                "enable_publishing": false,
+                "hide_side_toolbar": false,
+                "allow_symbol_change": true,
+                "container_id": container
+            });
+        }
+
+        $(function(){
+            loadSidebar();
+            
+            createChart("chart_spx", "OANDA:SPX500USD");
+            createChart("chart_nas", "OANDA:NAS100USD");
+            createChart("chart_rut", "OANDA:US2000USD");
+            createChart("chart_dxy", "CAPITALCOM:DXY");
+            createChart("chart_gold", "OANDA:XAUUSD");
+            createChart("chart_oil", "OANDA:WTICOUSD");
+            createChart("chart_btc", "BINANCE:BTCUSDT");
+            createChart("chart_eth", "BINANCE:ETHUSDT");
+            createChart("chart_vix", "CAPITALCOM:VIX");
+        });
+    </script>
+    <script src="clocks.js"></script>
 </body>
 </html>

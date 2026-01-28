@@ -6,25 +6,43 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="theme.css">
-    <title>Terminal | Coinglass</title>
+    <title>Terminal | External Portal</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
+    <style>
+        .portal-container {
+            flex-grow: 1;
+            height: calc(100vh - var(--header-height));
+            width: 100%;
+            border: none;
+            background: #000;
+        }
+    </style>
 </head>
 <body>
     <aside class="sidebar" id="sidebar-container"></aside>
     <main class="content">
         <header class="top-bar">
             <div class="clocks-wrapper"></div>
-            <div class="user-meta" style="font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono';">
-                MONITOR // COINGLASS
+            <div id="portal-title" class="user-meta" style="font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono';">
+                PORTAL // ACTIVE
             </div>
         </header>
-        <iframe src="https://www.coinglass.com/LiquidationData" style="width:100%; height: calc(100vh - var(--header-height)); border: none;"></iframe>
+        <iframe id="portal-frame" src="" class="portal-container"></iframe>
     </main>
     <script>
         $(function(){
             $("#sidebar-container").load("sidebar.html");
+            const urlParams = new URLSearchParams(window.location.search);
+            const target = urlParams.get('url');
+            const title = urlParams.get('title');
+            if (target) {
+                $("#portal-frame").attr("src", target);
+            }
+            if (title) {
+                $("#portal-title").text(`PORTAL // ${title.toUpperCase()}`);
+            }
         });
     </script>
     <script src="clocks.js"></script>

@@ -1,308 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Charts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="theme.css">
+    <title>Terminal | Forex</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
+    <style>
+        .dashboard-grid {
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            padding: 5px;
+            gap: 5px;
+        }
+        .widget-card {
+            height: calc((100vh - var(--header-height) - 40px) / 3);
+            min-height: 350px;
+        }
+        .content {
+            height: 100vh;
+            overflow: hidden;
+        }
+        .dashboard-grid {
+            height: calc(100vh - var(--header-height));
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
 
-<div id="menu"></div>
+    <aside class="sidebar" id="sidebar-container"></aside>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script>
-  $(function(){
-    $("#menu").load("menu.html"); 
-  });
-</script>
+    <main class="content">
+        <header class="top-bar">
+            <div class="clocks-wrapper"></div>
+            <div class="user-meta" style="font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono';">
+                CHARTS // FOREX_V1
+            </div>
+        </header>
 
-<div class="clock-container">
-  <div class="clock" id="lisbon"></div>
-  <div class="clock" id="newYork"></div>
-  <div class="clock" id="shanghai"></div>
-  <div class="clock" id="tokyo"></div>
-</div>
+        <!-- Ticker Tape (Ultra Slim) -->
+        <div style="height: 40px; border-bottom: 1px solid var(--border); background: var(--bg-secondary);">
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+                "symbols": [
+                    {"proName": "FOREXCOM:SPX500", "title": "S&P 500"},
+                    {"proName": "FOREXCOM:NSXUSD", "title": "US 100"},
+                    {"proName": "FX_IDC:EURUSD", "title": "EUR/USD"},
+                    {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
+                    {"proName": "BITSTAMP:ETHUSD", "title": "Ethereum"},
+                    {"proName": "OANDA:XAUUSD", "title": "Gold"}
+                ],
+                "showSymbolLogo": true,
+                "colorTheme": "dark",
+                "isTransparent": true,
+                "displayMode": "adaptive",
+                "locale": "en"
+            }
+            </script>
+        </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
-<script src="clocks.js"></script>
+        <div class="dashboard-grid">
+            <div class="widget-card"><div id="chart_eurusd" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_gbpusd" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_usdjpy" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_eurgbp" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_gbpjpy" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_audusd" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_usdcad" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_eurcad" style="height:100%"></div></div>
+            <div class="widget-card"><div id="chart_usdchf" style="height:100%"></div></div>
+        </div>
+    </main>
 
-<table style="width:100%; height:100%;">
-    <tr>
-    </tr>
-    <tr>
-        <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-          <div class="tradingview-widget-copyright"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:EURUSD",
-          "interval": "60",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "allow_symbol_change": true,
-          "support_host": "https://www.tradingview.com"
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script>
+        async function loadSidebar() {
+            try {
+                const response = await fetch('sidebar.html');
+                const html = await response.text();
+                document.getElementById('sidebar-container').innerHTML = html;
+                
+                const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+                document.querySelectorAll('.nav-item').forEach(link => {
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active');
+                    }
+                });
+            } catch (err) {
+                console.error('Sidebar load failed:', err);
+                document.getElementById('sidebar-container').innerHTML = '<div style="padding:20px; color:red;">!</div>';
+            }
         }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-        </td>
-        <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-          <div class="tradingview-widget-copyright"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:GBPUSD",
-          "interval": "60",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "allow_symbol_change": true,
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-        </td>
-        <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-          <div class="tradingview-widget-copyright"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:USDJPY",
-          "interval": "60",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "allow_symbol_change": true,
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-        </td>
-    </tr>
-    <tr>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-          <div class="tradingview-widget-copyright"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:EURGBP",
-          "interval": "60",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "allow_symbol_change": true,
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-          <div class="tradingview-widget-copyright"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:GBPJPY",
-          "interval": "60",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "allow_symbol_change": true,
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-          <div class="tradingview-widget-copyright"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:AUDUSD",
-          "interval": "60",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "allow_symbol_change": true,
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-          <div class="tradingview-widget-copyright"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:AUDJPY",
-          "interval": "60",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "allow_symbol_change": true,
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-          <div class="tradingview-widget-copyright"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:USDCAD",
-          "interval": "60",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "allow_symbol_change": true,
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-          <div class="tradingview-widget-copyright"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:EURCAD",
-          "interval": "60",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "allow_symbol_change": true,
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-          <div class="tradingview-widget-copyright"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:EURCHF",
-          "interval": "60",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "allow_symbol_change": true,
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-          <div class="tradingview-widget-copyright"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:GBPCHF",
-          "interval": "60",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "allow_symbol_change": true,
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-      <td>
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container" style="height:100%;width:100%">
-          <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-          <div class="tradingview-widget-copyright"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-          "width": "100%",
-          "height": 400,
-          "symbol": "OANDA:USDCHF",
-          "interval": "60",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "allow_symbol_change": true,
-          "support_host": "https://www.tradingview.com"
-        }
-          </script>
-        </div>
-        <!-- TradingView Widget END -->
-      </td>
-    </tr>
-</table>
 
+        function createChart(container, symbol) {
+            new TradingView.widget({
+                "width": "100%",
+                "height": "100%",
+                "symbol": symbol,
+                "interval": "60",
+                "timezone": "Etc/UTC",
+                "theme": "dark",
+                "style": "1",
+                "locale": "en",
+                "enable_publishing": false,
+                "allow_symbol_change": true,
+                "container_id": container
+            });
+        }
+
+        $(function(){
+            loadSidebar();
+            
+            createChart("chart_eurusd", "OANDA:EURUSD");
+            createChart("chart_gbpusd", "OANDA:GBPUSD");
+            createChart("chart_usdjpy", "OANDA:USDJPY");
+            createChart("chart_eurgbp", "OANDA:EURGBP");
+            createChart("chart_gbpjpy", "OANDA:GBPJPY");
+            createChart("chart_audusd", "OANDA:AUDUSD");
+            createChart("chart_usdcad", "OANDA:USDCAD");
+            createChart("chart_eurcad", "OANDA:EURCAD");
+            createChart("chart_usdchf", "OANDA:USDCHF");
+        });
+    </script>
+    <script src="clocks.js"></script>
 </body>
 </html>

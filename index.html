@@ -1,253 +1,207 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Monitor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="theme.css">
+    <title>Terminal | Home</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
 </head>
 <body>
 
-<div id="menu"></div>
+    <aside class="sidebar" id="sidebar-container"></aside>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
-    $(function(){
-      $("#menu").load("menu.html"); 
-    });
-</script>
+    <main class="content">
+        <header class="top-bar">
+            <div class="clocks-wrapper">
+                <!-- Clocks inited by clocks.js -->
+            </div>
+            <div class="user-meta" style="font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono';">
+                SYSTEM READY // TRADING_V1
+            </div>
+        </header>
 
-<div class="clock-container">
-    <div class="clock" id="lisbon"></div>
-    <div class="clock" id="newYork"></div>
-    <div class="clock" id="shanghai"></div>
-    <div class="clock" id="tokyo"></div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
-<script src="clocks.js"></script>
-
-
-<table style="width:100%; height:100%;">
-    <tr>
-        <div class="tradingview-widget-container__widget"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
-                {
-                "width": "100%",
-                "height": "800",
-                "symbolsGroups": [
-                {
-                    "name": "Indices",
-                    "originalName": "Indices",
-                    "symbols": [
-                    {
-                        "name": "OANDA:SPX500USD"
-                    },
-                    {
-                        "name": "OANDA:NAS100USD"
-                    },
-                    {
-                        "name": "OANDA:US2000USD"
-                    },
-                    {
-                        "name": "OANDA:EU50EUR"
-                    },
-                    {
-                        "name": "OANDA:DE30EUR"
-                    },
-                    {
-                        "name": "OANDA:FR40EUR"
-                    },
-                    {
-                        "name": "OANDA:JP225USD"
-                    },
-                    {
-                        "name": "OANDA:CN50USD"
-                    }
-                    ]
-                },
-                {
-                    "name": "Commodities",
-                    "originalName": "Futures",
-                    "symbols": [
-                    {
-                        "name": "OANDA:XAUUSD"
-                    },
-                    {
-                        "name": "OANDA:XAGUSD"
-                    },
-                    {
-                        "name": "OANDA:WTICOUSD"
-                    },
-                    {
-                        "name": "OANDA:BCOUSD"
-                    },
-                    {
-                        "name": "CAPITALCOM:COPPER"
-                    }
-                    ]
-                },
-                {
-                    "name": "Crypto",
-                    "symbols": [
-                    {
-                        "name": "BINANCE:BTCUSDC"
-                    },
-                    {
-                        "name": "BINANCE:ETHUSDC"
-                    },
-                    {
-                        "name": "BINANCE:SOLUSDC"
-                    },
-                    {
-                        "name": "BINANCE:BNBUSDC"
-                    },
-                    {
-                        "name": "BINANCE:DOGEUSDC"
-                    }
-                    ]
-                }
+        <!-- Ticker Tape (Ultra Slim) -->
+        <div style="height: 40px; border-bottom: 1px solid var(--border); background: var(--bg-secondary);">
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+                "symbols": [
+                    {"proName": "FOREXCOM:SPX500", "title": "S&P 500"},
+                    {"proName": "FOREXCOM:NSXUSD", "title": "US 100"},
+                    {"proName": "FX_IDC:EURUSD", "title": "EUR/USD"},
+                    {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
+                    {"proName": "BITSTAMP:ETHUSD", "title": "Ethereum"},
+                    {"proName": "OANDA:XAUUSD", "title": "Gold"}
                 ],
                 "showSymbolLogo": true,
-                "isTransparent": false,
                 "colorTheme": "dark",
-                "locale": "en",
-                "backgroundColor": "#131722"
+                "isTransparent": true,
+                "displayMode": "adaptive",
+                "locale": "en"
             }
-                </script>
-            </div>
-    </tr>
-</table>
-
-<table style="width:100%; height:100%;">
-    <tr>
-        <td>
-            <!-- TradingView Widget BEGIN -->
-            <div class="tradingview-widget-container">
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
-                {
-                "exchanges": [],
-                "dataSource": "SPX500",
-                "grouping": "sector",
-                "blockSize": "market_cap_basic",
-                "blockColor": "change",
-                "locale": "en",
-                "symbolUrl": "",
-                "colorTheme": "dark",
-                "hasTopBar": true,
-                "isDataSetEnabled": true,
-                "isZoomEnabled": true,
-                "hasSymbolTooltip": true,
-                "width": "100%",
-                "height": 550
-            }
-                </script>
-            </div>
-              <!-- TradingView Widget END -->
-        </td>
-        <td>
-             <!-- TradingView Widget BEGIN -->
-            <div class="tradingview-widget-container">
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-crypto-coins-heatmap.js" async>
-                {
-                "dataSource": "Crypto",
-                "blockSize": "market_cap_calc",
-                "blockColor": "change",
-                "locale": "en",
-                "symbolUrl": "",
-                "colorTheme": "dark",
-                "hasTopBar": true,
-                "isDataSetEnabled": true,
-                "isZoomEnabled": true,
-                "hasSymbolTooltip": true,
-                "width": "100%",
-                "height": 550
-            }
-                </script>
-            </div>
-            <!-- TradingView Widget END -->
-        </td>
-    </tr>
-
-</table>
-
-<table style="width:100%; height:100%;">
-    <tr>
-        <td>
-            <!-- TradingView Widget BEGIN -->
-            <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
-                <div class="tradingview-widget-copyright"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-etf-heatmap.js" async>
-                {
-                "dataSource": "AllUSEtf",
-                "blockSize": "aum",
-                "blockColor": "change",
-                "grouping": "asset_class",
-                "locale": "en",
-                "symbolUrl": "",
-                "colorTheme": "dark",
-                "hasTopBar": false,
-                "isDataSetEnabled": false,
-                "isZoomEnabled": true,
-                "hasSymbolTooltip": true,
-                "isMonoSize": false,
-                "width": "100%",
-                "height": "100%"
-            }
-                </script>
-            </div>
-            <!-- TradingView Widget END -->
-        </td>
-        <td>
-            <!-- TradingView Widget BEGIN -->
-            <div class="tradingview-widget-container">
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js" async>
-                {
-                "width": "100%",
-                "height": 650,
-                "currencies": [
-                "EUR",
-                "USD",
-                "JPY",
-                "GBP",
-                "CHF",
-                "AUD",
-                "CAD",
-                "NZD",
-                "CNY",
-                "RUB"
-                ],
-                "isTransparent": false,
-                "colorTheme": "dark",
-                "locale": "en",
-                "backgroundColor": "#1D222D"
-            }
-                </script>
-            </div>
-            <!-- TradingView Widget END -->
-        </td>
-    </tr>
-
-</table>
-
-<table style="width:100%; height:100%;">
-    <tr>
-    <!-- TradingView Widget BEGIN -->
-    <div class="tradingview-widget-container">
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
-        {
-        "width": "100%",
-        "height": 650,
-        "defaultColumn": "overview",
-        "defaultScreen": "most_capitalized",
-        "market": "america",
-        "showToolbar": true,
-        "colorTheme": "dark",
-        "locale": "en"
-        }
-        </script>
+            </script>
         </div>
-        <!-- TradingView Widget END -->
-    </tr>
-</table>
+
+        <div class="dashboard-grid" style="grid-template-columns: repeat(12, 1fr);">
+            
+            <!-- Main Heatmap (Left Hub) -->
+            <div class="widget-card" style="grid-column: span 8; height: 550px;">
+                <div class="widget-header">
+                    <span class="widget-title">S&P 500 Market Pulse</span>
+                </div>
+                <div style="height: 100%;">
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+                    {
+                        "dataSource": "SPX500",
+                        "grouping": "sector",
+                        "blockSize": "market_cap_basic",
+                        "blockColor": "change",
+                        "locale": "en",
+                        "symbolUrl": "",
+                        "colorTheme": "dark",
+                        "hasTopBar": true,
+                        "isDataSetEnabled": true,
+                        "isZoomEnabled": true,
+                        "hasSymbolTooltip": true,
+                        "width": "100%",
+                        "height": "100%"
+                    }
+                    </script>
+                </div>
+            </div>
+
+            <!-- Market Quotes (Right Sidebar) -->
+            <div class="widget-card" style="grid-column: span 4; height: 550px;">
+                <div class="widget-header">
+                    <span class="widget-title">Live Quotes</span>
+                </div>
+                <div style="height: 100%;">
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+                    {
+                        "width": "100%",
+                        "height": "100%",
+                        "symbolsGroups": [
+                            {
+                                "name": "Global",
+                                "symbols": [
+                                    {"name": "OANDA:SPX500USD", "displayName": "S&P 500"},
+                                    {"name": "OANDA:NAS100USD", "displayName": "NQ 100"},
+                                    {"name": "FX_IDC:DXY", "displayName": "DXY"},
+                                    {"name": "OANDA:XAUUSD", "displayName": "Gold"}
+                                ]
+                            },
+                            {
+                                "name": "Crypto",
+                                "symbols": [
+                                    {"name": "BINANCE:BTCUSDC", "displayName": "BTC"},
+                                    {"name": "BINANCE:ETHUSDC", "displayName": "ETH"}
+                                ]
+                            }
+                        ],
+                        "showSymbolLogo": true,
+                        "isTransparent": true,
+                        "colorTheme": "dark",
+                        "locale": "en"
+                    }
+                    </script>
+                </div>
+            </div>
+
+            <!-- Crypto Heatmap -->
+            <div class="widget-card" style="grid-column: span 6; height: 450px;">
+                <div class="widget-header">
+                    <span class="widget-title">Crypto Heatmap</span>
+                </div>
+                <div style="height: 100%;">
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-crypto-coins-heatmap.js" async>
+                    {
+                        "dataSource": "Crypto",
+                        "blockSize": "market_cap_calc",
+                        "blockColor": "change",
+                        "locale": "en",
+                        "symbolUrl": "",
+                        "colorTheme": "dark",
+                        "hasTopBar": true,
+                        "isDataSetEnabled": true,
+                        "isZoomEnabled": true,
+                        "hasSymbolTooltip": true,
+                        "width": "100%",
+                        "height": "100%"
+                    }
+                    </script>
+                </div>
+            </div>
+
+            <!-- Forex Matrix -->
+            <div class="widget-card" style="grid-column: span 6; height: 450px;">
+                <div class="widget-header">
+                    <span class="widget-title">Forex Matrix</span>
+                </div>
+                <div style="height: 100%;">
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js" async>
+                    {
+                        "width": "100%",
+                        "height": "100%",
+                        "currencies": ["EUR","USD","JPY","GBP","CHF","AUD","CAD","NZD"],
+                        "isTransparent": true,
+                        "colorTheme": "dark",
+                        "locale": "en"
+                    }
+                    </script>
+                </div>
+            </div>
+
+            <!-- Screener (Full Bottom) -->
+            <div class="widget-card full-width" style="height: 600px;">
+                <div class="widget-header">
+                    <span class="widget-title">Market Screener</span>
+                </div>
+                <div style="height: 100%;">
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+                    {
+                        "width": "100%",
+                        "height": "100%",
+                        "defaultColumn": "overview",
+                        "defaultScreen": "most_capitalized",
+                        "market": "america",
+                        "showToolbar": true,
+                        "colorTheme": "dark",
+                        "locale": "en"
+                    }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="clocks.js"></script>
+    <script>
+        async function loadSidebar() {
+            try {
+                const response = await fetch('sidebar.html');
+                const html = await response.text();
+                document.getElementById('sidebar-container').innerHTML = html;
+                
+                // Re-run active link highlight logic
+                const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+                document.querySelectorAll('.nav-item').forEach(link => {
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active');
+                    }
+                });
+            } catch (err) {
+                console.error('Sidebar load failed:', err);
+                // Fallback UI
+                document.getElementById('sidebar-container').innerHTML = '<div style="padding:20px; color:red;">!</div>';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', loadSidebar);
+    </script>
+</body>
+</html>

@@ -1,57 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>GSheets</title>
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="theme.css?v=2.0">
+    <title>Terminal | GSheets Analysis</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
+    <style>
+        .tab-nav {
+            display: flex;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 5px 15px;
+            gap: 10px;
+        }
+        .tablink {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 6px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            transition: all 0.2s ease;
+        }
+        .tablink:hover {
+            color: var(--text-primary);
+            border-color: var(--accent);
+        }
+        .tablink.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+            font-weight: 700;
+        }
+        .tab-content {
+            display: none;
+            height: calc(100vh - var(--header-height) - 80px);
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
 
-<div id="menu"></div>
+    <aside class="sidebar" id="sidebar-container"></aside>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-$(function(){
-  $("#menu").load("menu.html"); 
-});
-</script>
+    <main class="content">
+        <header class="top-bar">
+            <div class="clocks-wrapper"></div>
+            <div class="user-meta" style="font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono';">
+                ANALYSIS // GSHEETS // V2
+            </div>
+        </header>
 
-<div class="clock-container">
-  <div class="clock" id="lisbon"></div>
-  <div class="clock" id="newYork"></div>
-  <div class="clock" id="shanghai"></div>
-  <div class="clock" id="tokyo"></div>
-</div>
+        <!-- Ticker Tape (Ultra Slim) -->
+        <div style="height: 40px; border-bottom: 1px solid var(--border); background: var(--bg-secondary);">
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+                "symbols": [
+                    {"proName": "FOREXCOM:SPX500", "title": "S&P 500"},
+                    {"proName": "FOREXCOM:NSXUSD", "title": "US 100"},
+                    {"proName": "FX_IDC:EURUSD", "title": "EUR/USD"},
+                    {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
+                    {"proName": "BITSTAMP:ETHUSD", "title": "Ethereum"},
+                    {"proName": "OANDA:XAUUSD", "title": "Gold"}
+                ],
+                "showSymbolLogo": true,
+                "colorTheme": "dark",
+                "isTransparent": true,
+                "displayMode": "adaptive",
+                "locale": "en"
+            }
+            </script>
+        </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
-<script src="clocks.js"></script>
+        <!-- Tab links -->
+        <div class="tab-nav">
+            <button class="tablink active" onclick="openTab(event, 'Market Overview')">Market Overview</button>
+            <button class="tablink" onclick="openTab(event, '50DMA')">50DMA</button>
+        </div>
 
-<!-- Tab links -->
-<div>
-  <button class="tablink" onclick="openTab('Market Overview')">Market Overview</button>
-  <button class="tablink" onclick="openTab('50DMA')">50DMA</button>
-</div>
+        <!-- Tab content -->
+        <div id="Market Overview" class="tab-content active">
+            <iframe src="https://docs.google.com/spreadsheets/d/1p1aDFolOQnzUOb9rlfdq9QqzkJfB2k0CgES1hOmb2ss/edit?usp=sharing" style="width:100%; height: 100%; border: none;"></iframe>
+        </div>
+        <div id="50DMA" class="tab-content">
+            <iframe src="https://docs.google.com/spreadsheets/d/1dr-GHEs9d-Q4dzCiM4zeWC0E6Dd1rYX3L9cjIzHC-3U/edit?usp=sharing" style="width:100%; height: 100%; border: none;"></iframe>
+        </div>
+    </main>
 
-<!-- Tab content -->
-<div id="Market Overview" class="tab active">
-  <iframe src="https://docs.google.com/spreadsheets/d/1p1aDFolOQnzUOb9rlfdq9QqzkJfB2k0CgES1hOmb2ss/edit?usp=sharing" style="width:100%; height:1300px;"></iframe>
-</div>
-<div id="50DMA" class="tab">
-  <iframe src="https://docs.google.com/spreadsheets/d/1dr-GHEs9d-Q4dzCiM4zeWC0E6Dd1rYX3L9cjIzHC-3U/edit?usp=sharing" style="width:100%; height:1300px;"></iframe>
-</div>
+    <script>
+        async function loadSidebar() {
+            try {
+                const response = await fetch('sidebar.html');
+                const html = await response.text();
+                document.getElementById('sidebar-container').innerHTML = html;
+                
+                const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+                document.querySelectorAll('.nav-item').forEach(link => {
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active');
+                    }
+                });
+            } catch (err) {
+                console.error('Sidebar load failed:', err);
+                document.getElementById('sidebar-container').innerHTML = '<div style="padding:20px; color:red;">!</div>';
+            }
+        }
 
-<script>
-function openTab(tabId) {
-  const tabs = document.getElementsByClassName('tab');
-  for (let i = 0; i < tabs.length; i++) {
-    tabs[i].style.display = 'none';
-  }
-  document.getElementById(tabId).style.display = 'block';
-}
-</script>
+        function openTab(evt, tabId) {
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            const tabLinks = document.getElementsByClassName('tablink');
+            for (let i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove('active');
+            }
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
 
+        document.addEventListener('DOMContentLoaded', loadSidebar);
+    </script>
+    <script src="clocks.js"></script>
 </body>
 </html>

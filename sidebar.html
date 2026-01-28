@@ -1,0 +1,42 @@
+<div class="sidebar-header" style="white-space: nowrap;">
+    <div class="logo">T</div>
+    <span class="sidebar-title" style="margin-left: 12px;">TERMINAL</span>
+</div>
+<nav class="nav-links" style="white-space: nowrap;">
+    <a href="index.html" class="nav-item">
+        <span>Home</span>
+    </a>
+    <a href="charts_index.html" class="nav-item">
+        <span>Indices</span>
+    </a>
+    <a href="charts_fx.html" class="nav-item">
+        <span>Forex</span>
+    </a>
+    <a href="stablecoins.html" class="nav-item">
+        <span>Stablecoins</span>
+    </a>
+    <a href="coinglass.html" class="nav-item">
+        <span>Coinglass</span>
+    </a>
+    <div style="margin: 20px 15px 10px; font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">Tools & Data</div>
+    <a href="capitol_trades.html" class="nav-item">
+        <span>Capitol Trades</span>
+    </a>
+    <a href="gsheets.html" class="nav-item">
+        <span>Gsheets</span>
+    </a>
+    <a href="https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html" target="_blank" class="nav-item">
+        <span>CME FedWatch</span>
+    </a>
+</nav>
+
+<script>
+    // Highlight active link
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-item').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPath) {
+            link.classList.add('active');
+        }
+    });
+</script>
